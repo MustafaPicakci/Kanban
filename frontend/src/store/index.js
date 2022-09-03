@@ -1,15 +1,17 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+import Vue from "vue";
+import Vuex from "vuex";
+import VuexPersistence from "vuex-persist";
 
-Vue.use(Vuex)
+import Auth from "./modules/Auth";
+import Project from "./modules/Project";
+
+const vuexLocal = new VuexPersistence({
+  storage: window.localStorage,
+});
+
+Vue.use(Vuex);
 
 export default new Vuex.Store({
-  state: {
-  },
-  mutations: {
-  },
-  actions: {
-  },
-  modules: {
-  }
-})
+  modules: { Auth, Project},
+  plugins: [vuexLocal.plugin],
+});
